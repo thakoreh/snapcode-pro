@@ -39,6 +39,9 @@ export default function Editor() {
   const [fontSize, setFontSize] = useState("14");
   const [padding, setPadding] = useState("32");
   const [borderRadius, setBorderRadius] = useState("12");
+
+  // Detect if background is a gradient (has "gradient" in the value)
+  const isGradientBg = background.includes("gradient");
   const [showLineNumbers, setShowLineNumbers] = useState(true);
   const [showWatermark, setShowWatermark] = useState(true);
   const [title, setTitle] = useState("app.js");
@@ -424,7 +427,7 @@ export default function Editor() {
               className="overflow-hidden"
               style={{
                 borderRadius: `${borderRadius}px`,
-                backgroundColor: "var(--hljs-bg, #0d1117)",
+                backgroundColor: isGradientBg ? "transparent" : background,
                 minWidth: "480px",
                 maxWidth: "800px",
               }}
